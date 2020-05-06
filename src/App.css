@@ -1,9 +1,4 @@
 * {
-    box-sizing: border-box;
-}
-
-html,
-body {
     margin: 0;
     padding: 0;
 }
@@ -11,16 +6,7 @@ body {
 .app-wrapper {
     height: 100vh;
     display: grid;
-    grid-template-areas:
-            'header'
-            '.'
-            'menu'
-            '.'
-            'content'
-            '.'
-            'sidebar'
-            '.'
-            'footer';
+    grid-template-areas: 'header' '.' 'menu' '.' 'profile' '.' 'sidebar' '.' 'footer';
     grid-template-columns: 1fr;
     grid-template-rows: 80px 5px 80px 5px 1fr 5px 80px 5px 80px;
 }
@@ -29,46 +15,16 @@ body {
     .app-wrapper {
         height: 100vh;
         display: grid;
-        grid-template-areas:
-                'header header header header header'
-                '. . . . .'
-                'menu . content . sidebar'
-                '. . . . .'
-                'footer footer footer footer footer';
+        grid-template-areas: 'header header header header header' '. . . . .' 'menu . profile . sidebar' '. . . . .' 'footer footer footer footer footer';
         grid-template-columns: 130px 5px 1fr 5px 130px;
         grid-template-rows: 90px 5px 1fr 5px 90px;
     }
 }
 
-.header {
-    grid-area: header;
-    background-color: #20252a;
-    border-radius: 10px;
-}
-
-.header img {
-    width: 70px;
-
-}
-
-.nav {
-    grid-area: menu;
-    background-color: #fbbe18;
-    border-radius: 10px;
-}
-
-.content {
-    grid-area: content;
+.app-wrapper-content {
+    grid-area: profile;
     background-color: whitesmoke;
     border-radius: 10px;
-}
 
-.sidebar {
-    grid-area: sidebar;
 
 }
-
-.footer {
-    grid-area: footer;
-}
-
