@@ -2,8 +2,23 @@
     grid-area: menu;
     background-color: #fbbe18;
     border-radius: 10px;
+    padding: 25px;
+
+
 }
 
 .item {
     color: white;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+
+}
+
+.link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+
 }
