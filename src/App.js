@@ -8,17 +8,20 @@ import Dialogs from "./components/dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import Profile from "./components/profile/Profile";
 
-const App = () => {
+const App = (props) => {
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs/'>
-                        <Dialogs/>
+                        <Dialogs
+                            state={props.state.dialogsPage}/>
                     </Route>
                     <Route path='/profile/'>
-                        <Profile/>
+                        <Profile
+                            state={props.state.profilePage}/>
                     </Route>
                 </div>
                 <Navbar/>
