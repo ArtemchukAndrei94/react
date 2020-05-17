@@ -21,7 +21,7 @@ const App = (props) => {
                     </Route>
                     <Route path='/profile/'>
                         <Profile
-                            state={props.state.profilePage} p={props.p}/>
+                            profilePage={props.state.profilePage} dispatch={props.dispatch}/>
                     </Route>
                 </div>
                 <Navbar/>
