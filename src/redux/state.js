@@ -49,6 +49,6 @@ let store = {
         }
     }
 };
-
+// 38
 export default store;
 window.store = store;
