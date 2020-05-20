@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 let store = {
     _state: {
         profilePage: {
@@ -31,7 +34,6 @@ let store = {
         this._rerenderEntireTree = observer;
     },
     dispatch(action) {
-    debugger
         if (action.type === 'ADD-POST') {
             if (this._state.profilePage.newPostText !== "") {
                 let newPost = {
@@ -49,6 +51,20 @@ let store = {
         }
     }
 };
-// 38
+
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+};
+
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    }
+};
+
 export default store;
 window.store = store;
