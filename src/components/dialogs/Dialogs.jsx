@@ -2,11 +2,21 @@ import React from "react";
 import classes from "./Dialogs.module.css";
 import Dialog from "./dialog/Dialog";
 import Message from "./message/Message";
+import {newMessageTextActionCreator, sendMessageCreator} from "../../redux/state";
 
 const Dialogs = (props) => {
-    debugger
-    let dialogsEl = props.state.dialogs.map(d => <Dialog name={d.name} id={d.id}/>);
-    let messagesEl = props.state.messages.map(m => <Message message={m.message}/>);
+    let state = props.store.getState().dialogsPage;
+    let dialogsEl = state.dialogs.map(d => <Dialog name={d.name} id={d.id}/>);
+    let messagesEl = state.messages.map(m => <Message message={m.message}/>);
+    let onChangeMsg = (event) => {
+        debugger
+        let msg = event.target.value;
+        let action = newMessageTextActionCreator(msg);
+        props.store.dispatch(action);
+    };
+    let sendMsg = () => {
+        return props.store.dispatch(sendMessageCreator());
+    };
 
     return (
         <div className={classes.dialogs}>
@@ -15,7 +25,11 @@ const Dialogs = (props) => {
             </div>
             <div className={classes.messages}>
                 <div>
-                    {messagesEl}
+                    <div>{messagesEl}</div>
+                    <div><textarea onChange={onChangeMsg}
+                                   placeholder='Enter your msg'
+                                   value={state.newMessageText}/></div>
+                    <div><button onClick={sendMsg}>Save message</button></div>
                 </div>
             </div>
         </div>

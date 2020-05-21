@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+const SEND_MESSAGE = 'SEND-MESSAGE';
 
 let store = {
     _state: {
@@ -22,7 +24,8 @@ let store = {
                 {id: 1, message: "Hi"},
                 {id: 2, message: "How are you?"},
                 {id: 3, message: "Fine!!"}
-            ]
+            ],
+            newMessageText: ''
         },
     },
     _rerenderEntireTree() {
@@ -34,7 +37,8 @@ let store = {
         this._rerenderEntireTree = observer;
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        debugger
+        if (action.type === ADD_POST) {
             if (this._state.profilePage.newPostText !== "") {
                 let newPost = {
                     id: 5,
@@ -45,8 +49,17 @@ let store = {
                 this._state.profilePage.newPostText = "";
                 this._rerenderEntireTree(this._state);
             }
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
+            this._rerenderEntireTree(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.dialogsPage.newMessageText = action.messageText;
+            this._rerenderEntireTree(this._state);
+        } else if (action.type === SEND_MESSAGE) {
+            let msg = this._state.dialogsPage.newMessageText;
+            let newMsg = {id: 5, message: msg};
+            this._state.dialogsPage.messages.push(newMsg);
+            this._state.dialogsPage.newMessageText = "";
             this._rerenderEntireTree(this._state);
         }
     }
@@ -66,5 +79,17 @@ export const updateNewPostTextActionCreator = (text) => {
     }
 };
 
+export const newMessageTextActionCreator = (msg) => {
+  return {
+      type: UPDATE_NEW_MESSAGE_TEXT,
+      messageText: msg
+  }
+};
+
+export const sendMessageCreator = () => {
+    return {
+        type: SEND_MESSAGE
+    }
+};
+
 export default store;
-window.store = store;
