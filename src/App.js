@@ -7,7 +7,6 @@ import Footer from "./components/footer/Footer";
 import Dialogs from "./components/dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import Profile from "./components/profile/Profile";
-import store from "./redux/state";
 
 const App = (props) => {
 
@@ -17,7 +16,7 @@ const App = (props) => {
                 <Header/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs/'>
-                        <Dialogs store={store}/>
+                        <Dialogs store={props.store}/>
                     </Route>
                     <Route path='/profile/'>
                         <Profile

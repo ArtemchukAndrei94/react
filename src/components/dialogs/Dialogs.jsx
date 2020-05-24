@@ -2,14 +2,14 @@ import React from "react";
 import classes from "./Dialogs.module.css";
 import Dialog from "./dialog/Dialog";
 import Message from "./message/Message";
-import {newMessageTextActionCreator, sendMessageCreator} from "../../redux/state";
+import {newMessageTextActionCreator, sendMessageCreator} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
     let state = props.store.getState().dialogsPage;
     let dialogsEl = state.dialogs.map(d => <Dialog name={d.name} id={d.id}/>);
     let messagesEl = state.messages.map(m => <Message message={m.message}/>);
+
     let onChangeMsg = (event) => {
-        debugger
         let msg = event.target.value;
         let action = newMessageTextActionCreator(msg);
         props.store.dispatch(action);
