@@ -16,11 +16,10 @@ const App = (props) => {
                 <Header/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs/'>
-                        <DialogsCont store={props.store}/>
+                        <DialogsCont/>
                     </Route>
                     <Route path='/profile/'>
-                        <Profile
-                            store={props.store}/>
+                        <Profile/>
                     </Route>
                 </div>
                 <Navbar/>
